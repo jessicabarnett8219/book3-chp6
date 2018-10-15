@@ -75,7 +75,6 @@ const students = [
   
   
 // individual functions
-
 const h1 = (title, style) => {
   let newH1 = document.createElement("h1");
   newH1.innerHTML = title;
@@ -98,13 +97,20 @@ const aside = (title, style) => {
 }
 
 // student component function
-
-const student = (name, subject, info) => {
+const student = (name, subject, info, score) => {
   let studentComponent = document.createElement("div");
   studentComponent.setAttribute("id", "student");
+
   let newH1 = h1(name, "xx-large");
+  // logic to change color for passing or failing
+    if(score >= 60) {
+      newH1.classList.add("passing");
+      } else {
+      newH1.classList.add("failing");
+      }
   let newSection = section(subject, "section--padded");
   let newAside = aside(info, "pushRight");
+
   studentComponent.appendChild(newH1);
   studentComponent.appendChild(newSection);
   studentComponent.appendChild(newAside);
@@ -112,9 +118,9 @@ const student = (name, subject, info) => {
 }
 
 //  loop to add components to the DOM
-
 for (i = 0; i < students.length; i++) {
-  let studentComponent = student(students[i].name, students[i].course, students[i].info);
+  let studentComponent = student(students[i].name, students[i].course, students[i].info, students[i].score);
+    
   let container = document.querySelector("#container");
   container.appendChild(studentComponent);
 }
