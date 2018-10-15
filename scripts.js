@@ -74,31 +74,50 @@ const students = [
 ]
   
   
-  
+// individual functions
 
-
-const h1 = (title, style, passingColor) => {
-    return `<h1 class="${style passingColor}"> ${title}</h1>`
+const h1 = (title, style) => {
+  let newH1 = document.createElement("h1");
+  newH1.innerHTML = title;
+  newH1.classList.add(style);
+  return newH1;
 }
+
 const section = (title, style) => {
-  return `<section class="bordered dashed ${style}">${title}</section>`
+  let newSection = document.createElement("section");
+  newSection.innerHTML = title;
+  newSection.classList.add(style);
+  return newSection;
 }
 
 const aside = (title, style) => {
-  return `<aside class="${style}">${title}</aside>`
+  let newAside = document.createElement("aside");
+  newAside.innerHTML = title;
+  newAside.classList.add(style);
+  return newAside;
+}
+
+// student component function
+
+const student = (name, subject, info) => {
+  let studentComponent = document.createElement("div");
+  studentComponent.setAttribute("id", "student");
+  let newH1 = h1(name, "xx-large");
+  let newSection = section(subject, "section--padded");
+  let newAside = aside(info, "pushRight");
+  studentComponent.appendChild(newH1);
+  studentComponent.appendChild(newSection);
+  studentComponent.appendChild(newAside);
+  return studentComponent;
 }
 
 
-for (i = 0; i < students.length; i ++) {
-  let studentComponent = "";
-  if (student.score >= 60) {
-    studentComponent = (name, class, info) => `
-        <div id="student">
-            ${h1(name, "xx-large", "green")}
-            ${section(class, "section--padded")}
-            ${aside(info, "pushRight")}
-            $
-        </div>` } else {
-      
-  }
-}
+
+
+const container = document.querySelector("#container");
+let studentComponent = student("Marcus Fulbright", "Algebra", "Not a bright student");
+container.appendChild(studentComponent);
+console.log(container);
+
+
+
