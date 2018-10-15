@@ -1,73 +1,73 @@
 const students = [
   {
       name: "Chris Miller",
-      class: "History",
+      course: "History",
       info: "Failed last exam",
       score: 59
   },
   {
       name: "Courtney Seward",
-      class: "History",
+      course: "History",
       info: "Has completed all homework",
       score: 91
   },
   {
       name: "Garrett Ward",
-      class: "History",
+      course: "History",
       info: "Wonderful at helping other students",
       score: 88
   },
   {
       name: "John Dulaney",
-      class: "History",
+      course: "History",
       info: "Has never missed a class or exam",
       score: 92
   },
   {
       name: "Greg Lawrence",
-      class: "History",
+      course: "History",
       info: "Sub-par performance all around",
       score: 64
   },
   {
       name: "Leah Duvic",
-      class: "History",
+      course: "History",
       info: "Wonderful student",
       score: 97
   },
   {
       name: "Jesse Page",
-      class: "History",
+      course: "History",
       info: "Smokes too much. Distracting.",
       score: 76
   },
   {
       name: "Kevin Haggerty",
-      class: "History",
+      course: "History",
       info: "Falls asleep in class",
       score: 79
   },
   {
       name: "Max Wolf",
-      class: "History",
+      course: "History",
       info: "Talks too much",
       score: 83
   },
   {
       name: "Lissa Goforth",
-      class: "History",
+      course: "History",
       info: "Asks pointless, unrelated questions",
       score: 78
   },
   {
       name: "Tyler Bowman",
-      class: "History",
+      course: "History",
       info: "When was the last time he attended class?",
       score: 48
   },
   {
       name: "Ray Medrano",
-      class: "History",
+      course: "History",
       info: "Needs to contribute to in-class discussions",
       score: 95
   }
@@ -111,13 +111,17 @@ const student = (name, subject, info) => {
   return studentComponent;
 }
 
+//  loop to add components to the DOM
+
+for (i = 0; i < students.length; i++) {
+  let studentComponent = student(students[i].name, students[i].course, students[i].info);
+  let container = document.querySelector("#container");
+  container.appendChild(studentComponent);
+}
 
 
 
-const container = document.querySelector("#container");
-let studentComponent = student("Marcus Fulbright", "Algebra", "Not a bright student");
-container.appendChild(studentComponent);
-console.log(container);
+
 
 
 
