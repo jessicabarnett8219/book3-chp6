@@ -1,104 +1,133 @@
 const students = [
   {
       name: "Chris Miller",
-      class: "History",
+      course: "History",
       info: "Failed last exam",
       score: 59
   },
   {
       name: "Courtney Seward",
-      class: "History",
+      course: "History",
       info: "Has completed all homework",
       score: 91
   },
   {
       name: "Garrett Ward",
-      class: "History",
+      course: "History",
       info: "Wonderful at helping other students",
       score: 88
   },
   {
       name: "John Dulaney",
-      class: "History",
+      course: "History",
       info: "Has never missed a class or exam",
       score: 92
   },
   {
       name: "Greg Lawrence",
-      class: "History",
+      course: "History",
       info: "Sub-par performance all around",
       score: 64
   },
   {
       name: "Leah Duvic",
-      class: "History",
+      course: "History",
       info: "Wonderful student",
       score: 97
   },
   {
       name: "Jesse Page",
-      class: "History",
+      course: "History",
       info: "Smokes too much. Distracting.",
       score: 76
   },
   {
       name: "Kevin Haggerty",
-      class: "History",
+      course: "History",
       info: "Falls asleep in class",
       score: 79
   },
   {
       name: "Max Wolf",
-      class: "History",
+      course: "History",
       info: "Talks too much",
       score: 83
   },
   {
       name: "Lissa Goforth",
-      class: "History",
+      course: "History",
       info: "Asks pointless, unrelated questions",
       score: 78
   },
   {
       name: "Tyler Bowman",
-      class: "History",
+      course: "History",
       info: "When was the last time he attended class?",
       score: 48
   },
   {
       name: "Ray Medrano",
-      class: "History",
+      course: "History",
       info: "Needs to contribute to in-class discussions",
       score: 95
   }
 ]
   
   
-  
-
-
-const h1 = (title, style, passingColor) => {
-    return `<h1 class="${style passingColor}"> ${title}</h1>`
+// individual functions
+const h1 = (title, style) => {
+  let newH1 = document.createElement("h1");
+  newH1.innerHTML = title;
+  newH1.classList.add(style);
+  return newH1;
 }
+
 const section = (title, style) => {
-  return `<section class="bordered dashed ${style}">${title}</section>`
+  let newSection = document.createElement("section");
+  newSection.innerHTML = title;
+  newSection.classList.add(style);
+  return newSection;
 }
 
 const aside = (title, style) => {
-  return `<aside class="${style}">${title}</aside>`
+  let newAside = document.createElement("aside");
+  newAside.innerHTML = title;
+  newAside.classList.add(style);
+  return newAside;
+}
+
+// student component function
+const student = (name, subject, info, score) => {
+  let studentComponent = document.createElement("div");
+  studentComponent.setAttribute("id", "student");
+
+  let newH1 = h1(name, "xx-large");
+  // logic to change color for passing or failing
+    if(score >= 60) {
+      newH1.classList.add("passing");
+      } else {
+      newH1.classList.add("failing");
+      }
+  let newSection = section(subject, "section--padded");
+  let newAside = aside(info, "pushRight");
+
+  studentComponent.appendChild(newH1);
+  studentComponent.appendChild(newSection);
+  studentComponent.appendChild(newAside);
+  return studentComponent;
+}
+
+//  loop to add components to the DOM
+for (i = 0; i < students.length; i++) {
+  let studentComponent = student(students[i].name, students[i].course, students[i].info, students[i].score);
+    
+  let container = document.querySelector("#container");
+  container.appendChild(studentComponent);
 }
 
 
-for (i = 0; i < students.length; i ++) {
-  let studentComponent = "";
-  if (student.score >= 60) {
-    studentComponent = (name, class, info) => `
-        <div id="student">
-            ${h1(name, "xx-large", "green")}
-            ${section(class, "section--padded")}
-            ${aside(info, "pushRight")}
-            $
-        </div>` } else {
-      
-  }
-}
+
+
+
+
+
