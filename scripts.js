@@ -75,43 +75,35 @@ const students = [
   
 
   
-// individual functions
-const h1 = (title, style) => {
-  let newH1 = document.createElement("h1");
-  newH1.innerHTML = title;
-  newH1.classList.add(style);
-  return newH1;
+// function to make an element
+
+const makeElement = (element, title, style) => {
+let newElement = document.createElement(element);
+newElement.innerHTML = title;
+newElement.classList.add(style);
+return newElement;
 }
 
-const section = (title, style) => {
-  let newSection = document.createElement("section");
-  newSection.innerHTML = title;
-  newSection.classList.add(style);
-  return newSection;
-}
-
-const aside = (title, style) => {
-  let newAside = document.createElement("aside");
-  newAside.innerHTML = title;
-  newAside.classList.add(style);
-  return newAside;
-}
-
-// student component function
+// function to make the whole student component
 const student = (name, subject, info, score) => {
+  // makes the outer container
   let studentComponent = document.createElement("div");
   studentComponent.setAttribute("id", "student");
 
-  let newH1 = h1(name, "xx-large");
+  // makes the h1
+  let newH1 = makeElement("h1", name, "xx-large");
   // logic to change color for passing or failing
     if(score >= 60) {
       newH1.classList.add("passing");
       } else {
       newH1.classList.add("failing");
       }
-  let newSection = section(subject, "section--padded");
-  let newAside = aside(info, "pushRight");
+  // makes the section
+  let newSection = makeElement("section", subject, "section--padded");
+  // makes the aside
+  let newAside = makeElement("aside", info, "pushRight");
 
+  // appends h1, section and aside to the outer container
   studentComponent.appendChild(newH1);
   studentComponent.appendChild(newSection);
   studentComponent.appendChild(newAside);
