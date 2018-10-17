@@ -77,31 +77,31 @@ const students = [
   
 // function to make an element
 
-const makeElement = (element, title, style) => {
-let newElement = document.createElement(element);
-newElement.innerHTML = title;
-newElement.classList.add(style);
+const makeElement = (...props) => {
+let newElement = document.createElement(props[0]);
+newElement.innerHTML = props[1];
+newElement.classList.add(props[2]);
 return newElement;
 }
 
 // function to make the whole student component
-const student = (name, subject, info, score) => {
+const student = (...props) => {
   // makes the outer container
   let studentComponent = document.createElement("div");
-  studentComponent.setAttribute("id", "student");
+  studentComponent.classList.add("student");
 
-  // makes the h1
-  let newH1 = makeElement("h1", name, "xx-large");
+  // calling the makeElement function to make the h1
+  let newH1 = makeElement("h1", props[0], "xx-large");
   // logic to change color for passing or failing
-    if(score >= 60) {
+    if(props[3] >= 60) {
       newH1.classList.add("passing");
       } else {
       newH1.classList.add("failing");
       }
-  // makes the section
-  let newSection = makeElement("section", subject, "section--padded");
-  // makes the aside
-  let newAside = makeElement("aside", info, "pushRight");
+  // calling the makeElement function to make the section
+  let newSection = makeElement("section", props[1], "section--padded");
+  // calling the makeElement function to make the 
+  let newAside = makeElement("aside", props[2], "pushRight");
 
   // appends h1, section and aside to the outer container
   studentComponent.appendChild(newH1);
@@ -110,13 +110,17 @@ const student = (name, subject, info, score) => {
   return studentComponent;
 }
 
-//  loop to add components to the DOM
-for (i = 0; i < students.length; i++) {
-  let studentComponent = student(students[i].name, students[i].course, students[i].info, students[i].score);
-    
+//  loop to add components to the DOM. Use the student function inside.
+
+students.forEach( (currentStudent => {
+  let studentComponent = student(currentStudent.name, currentStudent.course, currentStudent.info, currentStudent.score);
+
   let container = document.querySelector("#container");
   container.appendChild(studentComponent);
-}
+  }
+))
+
+    
 
 
 
